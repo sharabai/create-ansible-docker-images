@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     sshpass
 
 ARG ANSIBLE_VERSION
-RUN pip3 install --break-system-packages ansible==${ANSIBLE_VERSION}
+RUN pip3 install --break-system-packages ansible-core==${ANSIBLE_VERSION}
 
 WORKDIR /ansible/playbooks
 

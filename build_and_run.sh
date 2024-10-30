@@ -4,13 +4,13 @@ set -euo pipefail
 build_and_run() {
     local version=$1
     local playbook=$2
-    local tag="sharaba/ansible:${version}"
+    local tag="sharabai/ansible:${version}"
 
     echo "Building Docker image for Ansible ${version}..."
     docker build -f "$(dirname "$0")/Dockerfile" --build-arg ANSIBLE_VERSION=${version} -t ${tag} "$(dirname "$0")"
 
     echo "Running Docker container with Ansible ${version}..."
-    docker run --rm -d \
+    docker run -d \
         --network host \
         -v "$(pwd):/ansible/playbooks" \
         "${tag}" "${playbook}"
