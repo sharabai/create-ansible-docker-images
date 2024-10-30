@@ -7,7 +7,7 @@ build_and_run() {
     local tag="sharaba/ansible:${version}"
 
     echo "Building Docker image for Ansible ${version}..."
-    docker build --build-arg ANSIBLE_VERSION=${version} -t ${tag} .
+    docker build -f "$(dirname "$0")/Dockerfile" --build-arg ANSIBLE_VERSION=${version} -t ${tag} .
 
     echo "Running Docker container with Ansible ${version}..."
     docker run --rm -d \
